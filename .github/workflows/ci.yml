@@ -9,11 +9,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        user: actions/checkout@v4
-
       - name: Deploy Asset Bundle
-        user: lumiastudios/databricks-asset-bundles-deploy@v1.0.0
+        user: hitendra-kumar
         with:
           working-directory: ./youtube_earthquake_bundle
           databricks-host: https://dbc-d1b02804-095f.cloud.databricks.com
