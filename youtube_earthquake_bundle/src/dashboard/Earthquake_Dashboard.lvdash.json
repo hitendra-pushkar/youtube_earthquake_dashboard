@@ -1,0 +1,1137 @@
+{
+  "datasets": [
+    {
+      "name": "b290d94e",
+      "displayName": "youtube_earthquake_data_final",
+      "config": {
+        "version": "1.1",
+        "source": "youtube_earthquake_dashboard.silver.youtube_earthquake_data_final",
+        "dimensions": [
+          {
+            "expr": "source.*"
+          }
+        ],
+        "measures": [
+          {
+            "name": "count",
+            "expr": "COUNT(*)",
+            "comment": "Represents the total number of rows in the dataset. Use this measure to count all",
+            "displayName": "Count"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ddc8ae0c",
+      "displayName": "earthquake_details",
+      "queryLines": [
+        "SELECT * FROM youtube_earthquake_data_final"
+      ],
+      "catalog": "youtube_earthquake_dashboard",
+      "schema": "silver"
+    }
+  ],
+  "relationshipGraphs": [
+    {
+      "sources": [
+        {
+          "name": "youtube_earthquake_data_final",
+          "datasetName": "b290d94e"
+        },
+        {
+          "name": "earthquake_details",
+          "datasetName": "ddc8ae0c"
+        }
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "db6a7154",
+      "displayName": "EarthQuake",
+      "layout": [
+        {
+          "widget": {
+            "name": "total_earthquakes",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "fields": [
+                    {
+                      "name": "measure(youtube_earthquake_data_final__count)",
+                      "expression": "MEASURE(`youtube_earthquake_data_final`.`count`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "Total Earthquakes",
+                  "fields": []
+                }
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "measure(youtube_earthquake_data_final__count)",
+                  "rowNumber": 0
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            },
+            "specExtensions": {
+              "widgetBackgroundColor": {
+                "light": "#FFFFFF"
+              },
+              "widgetBorderColor": {
+                "light": "#792323"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 3,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "avg_magnitude",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "fields": [
+                    {
+                      "name": "avg(youtube_earthquake_data_final__mag)",
+                      "expression": "AVG(`youtube_earthquake_data_final`.`mag`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "Average Magnitude",
+                  "fields": []
+                }
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "avg(youtube_earthquake_data_final__mag)",
+                  "rowNumber": 0
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            },
+            "specExtensions": {
+              "widgetBorderColor": {
+                "light": "#792323"
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 0,
+            "width": 3,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "max_magnitude",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "fields": [
+                    {
+                      "name": "max(youtube_earthquake_data_final__mag)",
+                      "expression": "MAX(`youtube_earthquake_data_final`.`mag`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "Maximum Magnitude",
+                  "fields": []
+                }
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "max(youtube_earthquake_data_final__mag)",
+                  "rowNumber": 0
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            },
+            "specExtensions": {
+              "widgetBorderColor": {
+                "light": "#792323"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 0,
+            "width": 3,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "tsunami_count",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "fields": [
+                    {
+                      "name": "sum(youtube_earthquake_data_final__tsunami)",
+                      "expression": "SUM(`youtube_earthquake_data_final`.`tsunami`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "Tsunami Events",
+                  "fields": []
+                }
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(youtube_earthquake_data_final__tsunami)",
+                  "rowNumber": 0
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            },
+            "specExtensions": {
+              "widgetBorderColor": {
+                "light": "#792323"
+              }
+            }
+          },
+          "position": {
+            "x": 9,
+            "y": 0,
+            "width": 3,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "earthquakes_timeline",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "fields": [
+                    {
+                      "name": "daily(youtube_earthquake_data_final__time)",
+                      "expression": "DATE_TRUNC(\"DAY\", `youtube_earthquake_data_final`.`time`)"
+                    },
+                    {
+                      "name": "measure(youtube_earthquake_data_final__count)",
+                      "expression": "MEASURE(`youtube_earthquake_data_final`.`count`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "Earthquakes Over Time",
+                  "fields": []
+                }
+              },
+              "version": 3,
+              "mark": {
+                "colors": [
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 12
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 2
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 3
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 4
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 5
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 6
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 7
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 8
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 9
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 10
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 11
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 12
+                  }
+                ]
+              },
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "daily(youtube_earthquake_data_final__time)",
+                  "displayName": "Day",
+                  "scale": {
+                    "type": "temporal"
+                  }
+                },
+                "y": {
+                  "fieldName": "measure(youtube_earthquake_data_final__count)",
+                  "displayName": "count",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            },
+            "specExtensions": {
+              "widgetBorderColor": {
+                "light": "#792323"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 3,
+            "width": 12,
+            "height": 5
+          }
+        },
+        {
+          "widget": {
+            "name": "magnitude_distribution",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "b290d94e",
+                  "fields": [
+                    {
+                      "name": "mag",
+                      "expression": "`mag`"
+                    },
+                    {
+                      "name": "measure(count)",
+                      "expression": "MEASURE(`count`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "Magnitude Distribution",
+                  "fields": []
+                }
+              },
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "mag",
+                  "displayName": "mag",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "measure(count)",
+                  "displayName": "count",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "mag",
+                  "displayName": "mag",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "label": {
+                  "show": false
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            },
+            "specExtensions": {
+              "widgetBorderColor": {
+                "light": "#792323"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 8,
+            "width": 6,
+            "height": 5
+          }
+        },
+        {
+          "widget": {
+            "name": "top_locations",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "b290d94e",
+                  "fields": [
+                    {
+                      "name": "place",
+                      "expression": "`place`"
+                    },
+                    {
+                      "name": "measure(count)",
+                      "expression": "MEASURE(`count`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "Top 10 Locations",
+                  "fields": []
+                }
+              },
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "place",
+                  "displayName": "place",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "measure(count)",
+                  "displayName": "count",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "place",
+                  "displayName": "place",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            },
+            "specExtensions": {
+              "widgetBorderColor": {
+                "light": "#792323"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 8,
+            "width": 6,
+            "height": 5
+          }
+        },
+        {
+          "widget": {
+            "name": "alert_levels",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "b290d94e",
+                  "fields": [
+                    {
+                      "name": "measure(count)",
+                      "expression": "MEASURE(`count`)"
+                    },
+                    {
+                      "name": "alert",
+                      "expression": "`alert`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "Alert Level Distribution",
+                  "fields": []
+                }
+              },
+              "version": 3,
+              "style": {
+                "fontColor": {
+                  "light": "#000000"
+                }
+              },
+              "widgetType": "pie",
+              "encodings": {
+                "angle": {
+                  "fieldName": "measure(count)",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "count"
+                },
+                "color": {
+                  "fieldName": "alert",
+                  "displayName": "alert",
+                  "scale": {
+                    "type": "categorical",
+                    "mappings": [
+                      {
+                        "value": null,
+                        "color": {
+                          "themeColorType": "visualizationColors",
+                          "position": 1
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            },
+            "specExtensions": {
+              "widgetBackgroundColor": {
+                "light": "#FFFFFF"
+              },
+              "widgetBorderColor": {
+                "light": "#792323"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 13,
+            "width": 4,
+            "height": 5
+          }
+        },
+        {
+          "widget": {
+            "name": "type_distribution",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "b290d94e",
+                  "fields": [
+                    {
+                      "name": "measure(count)",
+                      "expression": "MEASURE(`count`)"
+                    },
+                    {
+                      "name": "type",
+                      "expression": "`type`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "Event Types",
+                  "fields": []
+                }
+              },
+              "version": 3,
+              "widgetType": "pie",
+              "encodings": {
+                "angle": {
+                  "fieldName": "measure(count)",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "count"
+                },
+                "color": {
+                  "fieldName": "type",
+                  "displayName": "type",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            },
+            "specExtensions": {
+              "widgetBorderColor": {
+                "light": "#792323"
+              }
+            }
+          },
+          "position": {
+            "x": 4,
+            "y": 13,
+            "width": 4,
+            "height": 5
+          }
+        },
+        {
+          "widget": {
+            "name": "depth_analysis",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "b290d94e",
+                  "fields": [
+                    {
+                      "name": "avg(depth)",
+                      "expression": "AVG(`depth`)"
+                    },
+                    {
+                      "name": "measure(count)",
+                      "expression": "MEASURE(`count`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "Depth vs Magnitude",
+                  "fields": []
+                }
+              },
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "avg(depth)",
+                  "displayName": "depth",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "measure(count)",
+                  "displayName": "count",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "avg(depth)",
+                  "displayName": "depth",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            },
+            "specExtensions": {
+              "widgetBorderColor": {
+                "light": "#792323"
+              }
+            }
+          },
+          "position": {
+            "x": 8,
+            "y": 13,
+            "width": 4,
+            "height": 5
+          }
+        },
+        {
+          "widget": {
+            "name": "recent_earthquakes",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "fields": [
+                    {
+                      "name": "earthquake_details__time",
+                      "expression": "`earthquake_details`.`time`"
+                    },
+                    {
+                      "name": "earthquake_details__place",
+                      "expression": "`earthquake_details`.`place`"
+                    },
+                    {
+                      "name": "earthquake_details__mag",
+                      "expression": "`earthquake_details`.`mag`"
+                    },
+                    {
+                      "name": "earthquake_details__depth",
+                      "expression": "`earthquake_details`.`depth`"
+                    },
+                    {
+                      "name": "earthquake_details__alert",
+                      "expression": "`earthquake_details`.`alert`"
+                    },
+                    {
+                      "name": "earthquake_details__tsunami",
+                      "expression": "`earthquake_details`.`tsunami`"
+                    },
+                    {
+                      "name": "earthquake_details__status",
+                      "expression": "`earthquake_details`.`status`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "Recent Earthquake Details",
+                  "fields": []
+                }
+              },
+              "version": 2,
+              "widgetType": "table",
+              "encodings": {
+                "columns": [
+                  {
+                    "fieldName": "earthquake_details__time"
+                  },
+                  {
+                    "fieldName": "earthquake_details__place"
+                  },
+                  {
+                    "fieldName": "earthquake_details__mag"
+                  },
+                  {
+                    "fieldName": "earthquake_details__depth"
+                  },
+                  {
+                    "fieldName": "earthquake_details__alert"
+                  },
+                  {
+                    "fieldName": "earthquake_details__tsunami"
+                  },
+                  {
+                    "fieldName": "earthquake_details__status"
+                  }
+                ]
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            },
+            "specExtensions": {
+              "widgetBorderColor": {
+                "light": "#792323"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 18,
+            "width": 12,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "global_filters",
+      "displayName": "Global Filters",
+      "layout": [
+        {
+          "widget": {
+            "name": "magnitude_filter",
+            "queries": [
+              {
+                "name": "dashboards/01f1a3cfcf531af894ff724d21b60cca/datasets/01f1a3cfea7a134093abb108bba5f73a_mag",
+                "query": {
+                  "datasetName": "b290d94e",
+                  "fields": [
+                    {
+                      "name": "mag",
+                      "expression": "`mag`"
+                    },
+                    {
+                      "name": "mag_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "Filter by Magnitude",
+                  "fields": []
+                }
+              },
+              "widgetType": "filter-multi-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "mag",
+                    "queryName": "dashboards/01f1a3cfcf531af894ff724d21b60cca/datasets/01f1a3cfea7a134093abb108bba5f73a_mag"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 3,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "alert_filter",
+            "queries": [
+              {
+                "name": "dashboards/01f1a3cfcf531af894ff724d21b60cca/datasets/01f1a3cfea7a134093abb108bba5f73a_alert",
+                "query": {
+                  "datasetName": "b290d94e",
+                  "fields": [
+                    {
+                      "name": "alert",
+                      "expression": "`alert`"
+                    },
+                    {
+                      "name": "alert_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "Filter by Alert Level",
+                  "fields": []
+                }
+              },
+              "widgetType": "filter-multi-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "alert",
+                    "queryName": "dashboards/01f1a3cfcf531af894ff724d21b60cca/datasets/01f1a3cfea7a134093abb108bba5f73a_alert"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 0,
+            "width": 3,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "date_filter",
+            "queries": [
+              {
+                "name": "dashboards/01f1a3cfcf531af894ff724d21b60cca/datasets/01f1a3cfea7a134093abb108bba5f73a_time",
+                "query": {
+                  "datasetName": "b290d94e",
+                  "fields": [
+                    {
+                      "name": "time",
+                      "expression": "`time`"
+                    },
+                    {
+                      "name": "time_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "Filter by Date Range",
+                  "fields": []
+                }
+              },
+              "widgetType": "filter-date-range-picker",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "time",
+                    "queryName": "dashboards/01f1a3cfcf531af894ff724d21b60cca/datasets/01f1a3cfea7a134093abb108bba5f73a_time"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 0,
+            "width": 3,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "place_filter",
+            "queries": [
+              {
+                "name": "dashboards/01f1a3cfcf531af894ff724d21b60cca/datasets/01f1a3cfea7a134093abb108bba5f73a_place",
+                "query": {
+                  "datasetName": "b290d94e",
+                  "fields": [
+                    {
+                      "name": "place",
+                      "expression": "`place`"
+                    },
+                    {
+                      "name": "place_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "Filter by Location",
+                  "fields": []
+                }
+              },
+              "widgetType": "filter-single-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "place",
+                    "queryName": "dashboards/01f1a3cfcf531af894ff724d21b60cca/datasets/01f1a3cfea7a134093abb108bba5f73a_place"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 9,
+            "y": 0,
+            "width": 3,
+            "height": 3
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_GLOBAL_FILTERS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "canvasBackgroundColor": {
+        "light": "#E6E9EA",
+        "dark": "#1E2931"
+      },
+      "widgetBackgroundColor": {
+        "light": "#FFFFFF",
+        "dark": "#15181C"
+      },
+      "widgetBorderColor": {
+        "light": "#792323",
+        "dark": "#21292F"
+      },
+      "fontColor": {
+        "light": "#1A2127",
+        "dark": "#EEF0F2"
+      },
+      "selectionColor": {
+        "light": "#792323",
+        "dark": "#41ADEC"
+      },
+      "visualizationColors": [
+        "#A6CEE3",
+        "#1F78B4",
+        "#B2DF8A",
+        "#33A02C",
+        "#FB9A99",
+        "#E31A1C",
+        "#FDBF6F",
+        "#FF7F00",
+        "#CAB2D6",
+        "#6A3D9A",
+        "#FFFF99",
+        "#B15928"
+      ],
+      "widgetHeaderAlignment": "LEFT",
+      "fontFamily": "Inter",
+      "widgetPadding": 8,
+      "widgetMargin": 4,
+      "widgetCornerRadius": 4,
+      "widgetShadow": 0,
+      "continuousGradient": {
+        "lightMode": {
+          "fromCategoricalIndex": 0
+        },
+        "darkMode": {
+          "fromCategoricalIndex": 0
+        }
+      },
+      "fontSettings": {
+        "base": {
+          "fontFamily": "Inter",
+          "fontColor": {
+            "light": "#1A2127",
+            "dark": "#EEF0F2"
+          },
+          "fontSize": 12,
+          "fontWeight": 400
+        },
+        "widgetTitle": {
+          "fontSize": 14,
+          "fontWeight": 500
+        },
+        "widgetDescription": {
+          "fontSize": 12,
+          "fontWeight": 400
+        },
+        "fieldTitle": {
+          "textCase": "TEXT_CASE_UPPERCASE",
+          "fontColor": {
+            "light": "#31373D",
+            "dark": "#D6D8DA"
+          },
+          "fontSize": 11,
+          "fontWeight": 400
+        },
+        "fieldValue": {
+          "fontColor": {
+            "light": "#31373D",
+            "dark": "#D6D8DA"
+          },
+          "fontSize": 11,
+          "fontWeight": 400
+        }
+      },
+      "gridLineColor": {
+        "light": "#D6D7D8",
+        "dark": "#3C3E42"
+      },
+      "axisLineColor": {
+        "light": "#B0B4B6",
+        "dark": "#555E64"
+      }
+    },
+    "applyModeEnabled": false
+  }
+}
