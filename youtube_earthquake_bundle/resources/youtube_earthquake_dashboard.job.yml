@@ -1,7 +1,7 @@
 resources:
   jobs:
     youtube_earthquake_dashboard_job:
-      name: youtube_earthquake_dashboard_job
+      name: youtube_earthquake_dashboard_job_prod
       tasks:
         - task_key: Ingestion_Bronze_YEDJ
           notebook_task:
