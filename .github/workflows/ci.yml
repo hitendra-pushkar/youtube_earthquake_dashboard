@@ -12,6 +12,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Setup Databricks CLI
+        uses: databricks/setup-cli@main
+
       - name: Deploy Asset Bundle
         uses: lumiastudios/databricks-asset-bundles-deploy@v1.0.0
         with:
@@ -20,3 +23,6 @@ jobs:
           databricks-bundle-env: prod
           authentication-type: token
           databricks-token: ${{ secrets.DATABRICKS_TOKEN }}
+        env:
+          DATABRICKS_HOST: https://dbc-d1b02804-095f.cloud.databricks.com
+          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
