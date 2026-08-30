@@ -10,13 +10,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout
+
+      - name: Setup Databricks CLI
+        uses: databricks/setup-cli@main
 
       - name: Deploy Asset Bundle
-        uses: lumiastudios/databricks-asset-bundles-deploy@v1.0.0
+        uses: lumiastudios/databricks-asset-bundles-deploy
         with:
           working-directory: ./youtube_earthquake_bundle
           databricks-host: https://dbc-d1b02804-095f.cloud.databricks.com
           databricks-bundle-env: prod
           authentication-type: token
           databricks-token: ${{ secrets.DATABRICKS_TOKEN }}
+        env:
+          DATABRICKS_HOST: https://dbc-d1b02804-095f.cloud.databricks.com
+          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
