@@ -63,7 +63,7 @@ The dashboard contains or displays fields including:
 
 > **Note:** The exact source dataset URL/name is not visible in the dashboard screenshot.
 
-**Dataset source:** `[ADD DATASET SOURCE / URL]`
+**Dataset source:** `[[ADD DATASET SOURCE / URL](https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson)]`
 
 ### High-Level ETL Process
 
@@ -143,10 +143,10 @@ Recommended workspace components:
 
 > **Implementation details to be added:**
 >
-> * Workspace name: `[ADD WORKSPACE NAME]`
-> * Cluster / SQL Warehouse: `[ADD COMPUTE DETAILS]`
-> * Notebook names: `[ADD NOTEBOOK NAMES]`
-> * Job name: `[ADD JOB NAME]`
+> * Workspace name: `[youtube_earthquake_dashboard]`
+> * Cluster / SQL Warehouse: `[youtube_earthquake_dashboard]`
+> * Notebook names: `[Ingestion_To_Bronze]`
+> * Job name: `[youtube_earthquake_dashboard_job]`
 
 ### High-Level Dataflow
 
@@ -481,7 +481,7 @@ The dashboard should use Databricks workspace permissions to control access to d
 
 The dashboard can be shared with authorized Databricks workspace users.
 
-> **Access configuration:** `[ADD ACTUAL WORKSPACE GROUPS / PERMISSIONS]`
+> **Access configuration:** `[Authorized Databricks Users Only]`
 
 ---
 
@@ -513,7 +513,7 @@ Dashboard Data Refresh
 
 The actual refresh schedule is not visible in the dashboard screenshot.
 
-**Refresh frequency:** `[ADD SCHEDULE — e.g. hourly / daily / on-demand]`
+**Refresh frequency:** `[on-demand]`
 
 ### Monitoring
 
@@ -634,66 +634,15 @@ Consider:
 
 ---
 
-### Project Structure
-
-Recommended repository structure:
-
-```text
-Youtube-Earthquake-Dashboard/
-│
-├── README.md
-│
-├── notebooks/
-│   ├── 01_data_ingestion
-│   ├── 02_data_cleaning
-│   ├── 03_data_transformation
-│   └── 04_dashboard_queries
-│
-├── sql/
-│   ├── kpi_queries.sql
-│   ├── trend_analysis.sql
-│   ├── magnitude_analysis.sql
-│   ├── location_analysis.sql
-│   └── alert_depth_analysis.sql
-│
-├── data/
-│   └── README.md
-│
-├── dashboard/
-│   └── README.md
-│
-└── docs/
-    └── architecture.md
-```
-
-> Update the structure above to match the actual GitHub repository.
-
----
-
 ### Notebook References
 
 | Notebook                 | Purpose                               |
 | ------------------------ | ------------------------------------- |
-| `01_data_ingestion`      | Ingest earthquake source data         |
-| `02_data_cleaning`       | Clean and validate raw records        |
-| `03_data_transformation` | Create curated analytical data        |
-| `04_dashboard_queries`   | Prepare dashboard metrics and queries |
+| `Ingestion_To_Bronze`      | Ingest earthquake source data         |
+| `cleaned_youtube_earthquake_dashboard.py`       | Clean and validate raw records        |
+| `Earthquake_Dashboard`   | Prepare dashboard metrics and queries |
 
-> **Actual notebook names:** `[REPLACE WITH YOUR DATABRICKS NOTEBOOK NAMES]`
-
----
-
-### Dashboard References
-
-**Dashboard:** `YouTube EarthQuake Dashboard`
-
-**Databricks Workspace:** `[ADD WORKSPACE URL]`
-
-**Dashboard URL:** `[ADD DASHBOARD URL]`
-
-**Dataset:** `[ADD DATASET NAME / SOURCE]`
-
-**Job / Workflow:** `[ADD JOB NAME]`
+> **Actual notebook names:** `[Ingestion_To_Bronze]`
 
 ---
 
