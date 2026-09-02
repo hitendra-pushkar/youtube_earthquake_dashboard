@@ -4,7 +4,7 @@ A Databricks-based analytics dashboard for exploring and monitoring earthquake d
 
 The dashboard provides a consolidated view of earthquake activity, magnitude distribution, geographic locations, earthquake depth, tsunami events, and alert levels.
 
-![Earthquake Dashboard](Youtube_EarthQuake_Dashboard_Final.png)
+![Earthquake Dashboard](Youtube-Earthquake-Dashboard.png)
 ---
 
 ## 1. Project Overview
